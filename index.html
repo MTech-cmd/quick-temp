@@ -4,432 +4,2074 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f5f1">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Een gezamenlijk verzoek aan gemeente Hoorn voor zorgvuldige beoordeling, passende woonbegeleiding en verantwoordelijkheid voor tekortgeschoten ondersteuning.">
 
-  <title>Geef mij de kans om eindelijk te leven</title>
-  <meta name="description" content="Een persoonlijk verhaal en een oproep aan de gemeente Hoorn voor een veilige woonplek, passende begeleiding en een eerlijke kans op een toekomst.">
+  <title>Passende ondersteuning is een verantwoordelijkheid</title>
 
   <style>
+    /* =====================================================
+       1. THEME VARIABLES
+    ===================================================== */
+
     :root {
-      --background: #f7f5f1;
-      --surface: #ffffff;
-      --text: #292824;
-      --muted: #716e67;
-      --accent: #8b554b;
-      --accent-dark: #704139;
-      --border: #e8e3dc;
-      --soft: #f1ece6;
+      color-scheme: light;
+
+      --bg: #f5f7fb;
+      --bg-secondary: #edf2f8;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-solid: #ffffff;
+      --surface-hover: rgba(255, 255, 255, 0.92);
+
+      --text: #172033;
+      --text-secondary: #566176;
+      --text-muted: #78849a;
+
+      --primary: #2457a6;
+      --primary-hover: #194783;
+      --primary-soft: rgba(36, 87, 166, 0.10);
+
+      --secondary: #168c91;
+      --secondary-soft: rgba(22, 140, 145, 0.10);
+
+      --accent: #e89a35;
+      --accent-soft: rgba(232, 154, 53, 0.13);
+
+      --danger: #bd4b4b;
+      --border: rgba(30, 50, 80, 0.10);
+      --shadow: 0 18px 55px rgba(32, 51, 82, 0.08);
+      --shadow-hover: 0 22px 65px rgba(32, 51, 82, 0.14);
+
+      --nav-bg: rgba(245, 247, 251, 0.76);
+      --glass-blur: 20px;
+
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+
+      --container: 1120px;
     }
 
-    * {
+    [data-theme="dark"] {
+      color-scheme: dark;
+
+      --bg: #101722;
+      --bg-secondary: #151f2d;
+      --surface: rgba(30, 43, 60, 0.72);
+      --surface-solid: #1c2939;
+      --surface-hover: rgba(38, 54, 74, 0.94);
+
+      --text: #edf3fb;
+      --text-secondary: #b1bfd1;
+      --text-muted: #8494aa;
+
+      --primary: #7eafff;
+      --primary-hover: #a0c4ff;
+      --primary-soft: rgba(126, 175, 255, 0.12);
+
+      --secondary: #6ed1ce;
+      --secondary-soft: rgba(110, 209, 206, 0.12);
+
+      --accent: #f1b75e;
+      --accent-soft: rgba(241, 183, 94, 0.12);
+
+      --danger: #f08c8c;
+      --border: rgba(210, 225, 245, 0.10);
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
+      --shadow-hover: 0 22px 65px rgba(0, 0, 0, 0.32);
+
+      --nav-bg: rgba(16, 23, 34, 0.78);
+    }
+
+    /* =====================================================
+       2. BASE
+    ===================================================== */
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
 
     body {
       margin: 0;
-      background: var(--background);
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 10% 5%,
+          rgba(36, 87, 166, 0.09),
+          transparent 32rem
+        ),
+        radial-gradient(
+          circle at 90% 30%,
+          rgba(22, 140, 145, 0.08),
+          transparent 34rem
+        ),
+        var(--bg);
+
       color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.75;
-      font-size: 17px;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      line-height: 1.7;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    }
+
+    button,
+    a {
+      font: inherit;
     }
 
     a {
       color: inherit;
     }
 
-    .page {
-      width: min(100% - 36px, 780px);
-      margin: 0 auto;
+    button {
+      cursor: pointer;
     }
 
-    header {
-      padding: 75px 0 48px;
-      text-align: center;
+    ::selection {
+      background: var(--primary);
+      color: white;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 36px;
     }
 
     .eyebrow {
-      color: var(--accent);
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 15px;
+
+      color: var(--secondary);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    h1 {
-      max-width: 680px;
-      margin: 20px auto;
-      font-size: clamp(36px, 7vw, 58px);
-      font-weight: 400;
-      line-height: 1.13;
-      letter-spacing: -1.5px;
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      border-radius: 10px;
+      background: currentColor;
     }
 
-    .intro {
-      max-width: 570px;
-      margin: 20px auto 30px;
-      color: var(--muted);
-      font-size: 19px;
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 5.1rem);
+      max-width: 900px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: var(--text-secondary);
+    }
+
+    .lead {
+      font-size: clamp(1.08rem, 2vw, 1.3rem);
+      line-height: 1.75;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    /* =====================================================
+       3. GLASS COMPONENTS
+    ===================================================== */
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+
+    .glass-card {
+      padding: 30px;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(36, 87, 166, 0.23);
+    }
+
+    /* =====================================================
+       4. NAVIGATION
+    ===================================================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .brand-mark {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+
+      color: white;
+      font-size: 1rem;
+      font-weight: 900;
+
+      background: linear-gradient(135deg, #2457a6, #168c91);
+      box-shadow: 0 5px 16px rgba(36, 87, 166, 0.22);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 650;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 8px;
+      padding-left: 14px;
+      border-left: 1px solid var(--border);
+    }
+
+    .icon-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      min-height: 40px;
+      padding: 8px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+
+      font-size: 0.82rem;
+      font-weight: 750;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .icon-button:hover {
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    /* =====================================================
+       5. BUTTONS
+    ===================================================== */
 
     .button {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 5px;
-      background: var(--accent);
-      color: white;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      min-height: 52px;
+      padding: 13px 22px;
+
+      border: 1px solid transparent;
+      border-radius: 15px;
+
       text-decoration: none;
-      transition: background 0.2s ease;
+      font-size: 0.94rem;
+      font-weight: 800;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
     }
 
     .button:hover {
-      background: var(--accent-dark);
+      transform: translateY(-3px);
     }
 
-    .status-notice {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      max-width: 510px;
-      margin: 25px auto;
-      padding: 16px 20px;
-      background: var(--soft);
+    .button-primary {
+      color: white;
+      background: linear-gradient(135deg, #2457a6, #168c91);
+      box-shadow: 0 10px 25px rgba(36, 87, 166, 0.22);
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 14px 32px rgba(36, 87, 166, 0.30);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .button-secondary:hover {
+      background: var(--surface-hover);
+    }
+
+    .button-disabled {
+      opacity: 0.62;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* =====================================================
+       6. HERO
+    ===================================================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 105px 0 90px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      top: 5%;
+      right: -170px;
+
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(22, 140, 145, 0.15),
+        transparent 70%
+      );
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+      animation: fade-up 0.8s ease both;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 8px 14px;
+      margin-bottom: 27px;
+
       border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      line-height: 1.6;
-      text-align: left;
-    }
+      border-radius: 50px;
 
-    .status-notice strong {
-      color: var(--accent-dark);
-      font-size: 14px;
+      background: var(--surface);
+      color: var(--text-secondary);
+
+      font-size: 0.82rem;
+      font-weight: 750;
     }
 
     .status-dot {
-      flex-shrink: 0;
-      width: 9px;
-      height: 9px;
-      margin-top: 5px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #c18b45;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
     }
 
-    main {
-      padding-bottom: 70px;
+    .hero h1 span {
+      color: var(--primary);
     }
 
-    .story {
-      padding: 42px 48px;
+    .hero-description {
+      max-width: 760px;
+      font-size: 1.17rem;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 34px;
+    }
+
+    .hero-note {
+      max-width: 680px;
+      padding-left: 17px;
+      border-left: 3px solid var(--accent);
+      font-size: 0.91rem;
+      color: var(--text-muted);
+    }
+
+    /* =====================================================
+       7. PURPOSE STRIP
+    ===================================================== */
+
+    .purpose-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .purpose-item {
+      padding: 24px;
+      border-radius: var(--radius-md);
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      box-shadow: 0 8px 30px rgba(40, 30, 20, 0.035);
+      backdrop-filter: blur(15px);
     }
 
-    .story p {
-      margin: 0 0 23px;
+    .purpose-number {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--secondary);
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
     }
 
-    .story p:last-child {
+    .purpose-item h3 {
+      font-size: 1.05rem;
+    }
+
+    .purpose-item p {
+      font-size: 0.91rem;
       margin-bottom: 0;
     }
 
-    .story h2 {
-      margin: 42px 0 18px;
-      font-size: 25px;
-      font-weight: 400;
-      line-height: 1.3;
+    /* =====================================================
+       8. ACCOUNTABILITY
+    ===================================================== */
+
+    .accountability {
+      position: relative;
+      overflow: hidden;
+      padding: 48px;
+
+      background:
+        linear-gradient(
+          120deg,
+          var(--primary-soft),
+          var(--secondary-soft)
+        );
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
     }
 
-    .story strong {
-      color: var(--accent-dark);
-      font-weight: 700;
+    .accountability::after {
+      content: "!";
+      position: absolute;
+      right: 35px;
+      bottom: -80px;
+
+      color: var(--primary);
+      opacity: 0.055;
+
+      font-size: 20rem;
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
     }
 
-    .requests {
-      margin: 25px 0 30px;
-      padding: 24px 28px;
-      background: var(--soft);
-      border-left: 3px solid var(--accent);
-      border-radius: 3px;
+    .accountability-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
     }
 
-    .requests ul {
-      margin: 12px 0 0;
-      padding-left: 21px;
+    .accountability blockquote {
+      margin: 24px 0;
+      padding-left: 22px;
+      border-left: 4px solid var(--accent);
+
+      color: var(--text);
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-weight: 750;
+      line-height: 1.5;
+      letter-spacing: -0.02em;
     }
 
-    .requests li {
-      margin-bottom: 10px;
+    /* =====================================================
+       9. BACKGROUND
+    ===================================================== */
+
+    .background-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
     }
+
+    .background-main {
+      padding: 38px;
+    }
+
+    .background-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 34px;
+    }
+
+    .aside-highlight {
+      padding: 19px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(232, 154, 53, 0.20);
+    }
+
+    .aside-highlight p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    /* =====================================================
+       10. TIMELINE
+    ===================================================== */
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 17px;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        var(--primary),
+        var(--secondary),
+        transparent
+      );
+      opacity: 0.35;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 35px 58px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 5px;
+      left: 8px;
+
+      width: 20px;
+      height: 20px;
+
+      border: 4px solid var(--bg);
+      border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 0 2px var(--secondary);
+    }
+
+    .timeline-card {
+      padding: 28px;
+    }
+
+    .timeline-date {
+      display: inline-block;
+      margin-bottom: 12px;
+
+      color: var(--secondary);
+      font-size: 0.83rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .timeline-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =====================================================
+       11. REQUEST CARDS
+    ===================================================== */
+
+    .requests-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .request-card {
+      padding: 30px;
+    }
+
+    .request-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+
+      margin-bottom: 20px;
+      border-radius: 15px;
+
+      background: var(--primary-soft);
+      color: var(--primary);
+
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .request-card:nth-child(even) .request-icon {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+
+    .request-card p {
+      margin-bottom: 0;
+    }
+
+    /* =====================================================
+       12. SYSTEMIC QUESTIONS
+    ===================================================== */
+
+    .question-list {
+      display: grid;
+      gap: 12px;
+      max-width: 900px;
+    }
+
+    .question {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+
+      padding: 21px 23px;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: var(--surface);
+    }
+
+    .question-mark {
+      flex: 0 0 29px;
+      width: 29px;
+      height: 29px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+
+      font-weight: 900;
+    }
+
+    .question p {
+      margin: 0;
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    /* =====================================================
+       13. PETITION STATUS
+    ===================================================== */
+
+    .status-panel {
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .status-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 8px 12px;
+      border-radius: 50px;
+
+      background: var(--accent-soft);
+      color: var(--text);
+
+      font-size: 0.8rem;
+      font-weight: 850;
+    }
+
+    .status-label .status-dot {
+      background: var(--accent);
+    }
+
+    .status-side {
+      max-width: 220px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .status-side strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.05rem;
+      margin-bottom: 5px;
+    }
+
+    /* =====================================================
+       14. FINAL CTA
+    ===================================================== */
 
     .closing {
-      margin-top: 35px;
-      padding-top: 25px;
-      border-top: 1px solid var(--border);
-      font-size: 19px;
-    }
-
-    .closing strong {
-      font-size: 21px;
-    }
-
-    .call-to-action {
-      padding: 45px 25px;
+      position: relative;
+      overflow: hidden;
+      padding: 65px 45px;
       text-align: center;
+
+      background:
+        linear-gradient(
+          130deg,
+          rgba(36, 87, 166, 0.12),
+          rgba(22, 140, 145, 0.12)
+        );
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
     }
 
-    .call-to-action h2 {
-      margin: 0 0 12px;
-      font-size: 29px;
-      font-weight: 400;
+    .closing-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: auto;
     }
 
-    .call-to-action p {
-      max-width: 500px;
-      margin: 0 auto 24px;
-      color: var(--muted);
+    .closing h2 {
+      margin-bottom: 18px;
     }
+
+    .closing p {
+      margin-bottom: 27px;
+    }
+
+    /* =====================================================
+       15. FOOTER
+    ===================================================== */
 
     footer {
-      padding: 24px 0 35px;
+      padding: 40px 0;
       border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      text-align: center;
     }
 
-    @media (max-width: 600px) {
-      body {
-        font-size: 16px;
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .footer-inner p {
+      max-width: 600px;
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-mark {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    /* =====================================================
+       16. REVEAL ANIMATIONS
+    ===================================================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
 
-      header {
-        padding: 55px 0 35px;
-      }
-
-      .story {
-        padding: 28px 23px;
-      }
-
-      .story h2 {
-        font-size: 23px;
-      }
-
-      .requests {
-        padding: 20px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    @media print {
-      body {
-        background: white;
-      }
+    /* =====================================================
+       17. RESPONSIVE
+    ===================================================== */
 
-      .button,
-      .call-to-action,
-      footer {
+    @media (max-width: 850px) {
+      .nav-link {
         display: none;
       }
 
-      .story {
-        border: none;
-        box-shadow: none;
-        padding: 0;
+      .background-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .status-side {
+        max-width: none;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(100% - 28px, var(--container));
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .hero {
+        padding: 75px 0 65px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.45rem, 12vw, 3.5rem);
+      }
+
+      .purpose-strip,
+      .requests-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .accountability {
+        padding: 30px 24px;
+      }
+
+      .accountability::after {
+        font-size: 12rem;
+        right: 10px;
+        bottom: -45px;
+      }
+
+      .background-main,
+      .background-aside,
+      .timeline-card,
+      .request-card {
+        padding: 24px;
+      }
+
+      .closing {
+        padding: 45px 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .footer-mark {
+        text-align: left;
+      }
+
+      .brand-text {
+        display: none;
+      }
+
+      .icon-button {
+        min-height: 38px;
+        padding: 7px 10px;
+      }
+
+      .nav {
+        min-height: 66px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
 
-    <header>
-      <div class="eyebrow">Een persoonlijk verhaal · Gemeente Hoorn</div>
+  <!-- ===================================================
+       NAVIGATION
+  ==================================================== -->
 
-      <h1>Geef mij de kans om eindelijk te leven</h1>
+  <header class="site-header">
+    <div class="container nav">
 
-      <p class="intro">
-        Ik vraag niet om een bijzonder leven.
-        Ik vraag om de kans op een normaal leven.
-      </p>
-
-      <div class="status-notice">
-        <span class="status-dot"></span>
-        <span>
-          <strong>Petitie in voorbereiding</strong><br>
-          De petitie is momenteel nog in afwachting van publicatie.
-          Ik laat persoonlijk weten zodra deze ondertekend kan worden.
+      <a class="brand" href="#top" aria-label="Naar de startpagina">
+        <span class="brand-mark">P</span>
+        <span class="brand-text" data-i18n="brand">
+          Passende ondersteuning
         </span>
+      </a>
+
+      <div class="nav-right">
+        <a class="nav-link" href="#aanleiding" data-i18n="navBackground">Aanleiding</a>
+        <a class="nav-link" href="#tijdlijn" data-i18n="navTimeline">Tijdlijn</a>
+        <a class="nav-link" href="#verzoeken" data-i18n="navRequests">Verzoeken</a>
+        <a class="nav-link" href="#status" data-i18n="navStatus">Over deze petitie</a>
+
+        <div class="nav-controls">
+          <button
+            class="icon-button"
+            id="languageToggle"
+            type="button"
+            aria-label="Switch language"
+          >
+            EN
+          </button>
+
+          <button
+            class="icon-button"
+            id="themeToggle"
+            type="button"
+            aria-label="Wissel kleurthema"
+          >
+            <span id="themeIcon" aria-hidden="true">☾</span>
+            <span id="themeLabel" data-i18n="darkMode">Darkmode</span>
+          </button>
+        </div>
       </div>
 
-      <a class="button" href="#verhaal">Lees mijn verhaal</a>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <article class="story" id="verhaal">
 
-        <p>
-          Al vanaf jonge leeftijd heb ik te maken gehad met geweld,
-          mishandeling en omstandigheden waarin ik niet de veiligheid
-          en bescherming kreeg die ieder kind verdient. Ik heb geprobeerd
-          hulp te zoeken. Ik heb geprobeerd duidelijk te maken dat het
-          niet goed ging. Toch ben ik te vaak tussen instanties, gemeenten
-          en hulpverlening terechtgekomen zonder dat er een oplossing
-          kwam die mij daadwerkelijk verder hielp.
-        </p>
+  <main id="top">
 
-        <p>
-          Ik ben inmiddels dakloos. En terwijl ik probeer uit te vinden
-          waar ik vannacht kan slapen, probeer ik ook mijn opleiding,
-          werk en toekomst niet kwijt te raken.
-        </p>
+    <!-- =================================================
+         HERO
+    ================================================== -->
 
-        <h2>Ik heb altijd een normale studententijd gewild.</h2>
+    <section class="hero">
+      <div class="container">
 
-        <p>
-          Ik wilde gewoon naar school kunnen gaan, vrienden maken,
-          na de lessen blijven hangen, nieuwe mensen leren kennen en
-          me druk maken over gewone studentendingen. Ik wilde kunnen
-          nadenken over mijn opleiding en mijn toekomst, niet over
-          waar ik die nacht terechtkan, hoe ik aan eten kom of hoe ik
-          de volgende ochtend op mijn werk verschijn.
-        </p>
+        <div class="hero-content">
 
-        <p>
-          Ondanks alles heb ik niet stilgezeten. Ik volg een mbo-4-opleiding
-          in de IT en heb gewerkt bij onder andere HANAB en Bibliotheek
-          Hoorn. Ik heb geprobeerd zelfstandig te worden, ervaring op te
-          bouwen en iets van mijn toekomst te maken. Niet omdat mijn
-          omstandigheden makkelijk waren, maar juist omdat ik ondanks
-          die omstandigheden vooruit wilde.
-        </p>
+          <div class="hero-label">
+            <span class="status-dot"></span>
+            <span data-i18n="heroLabel">
+              Een gezamenlijk verzoek aan gemeente Hoorn
+            </span>
+          </div>
 
-        <p>
-          Toch ben ik steeds verder vastgelopen.
-        </p>
+          <h1 data-i18n="heroTitle">
+            Passende ondersteuning is een <span>verantwoordelijkheid.</span>
+          </h1>
 
-        <p>
-          Een hulpverleningstraject van ongeveer zeven maanden bij het
-          Leger des Heils heeft mij niet de stabiliteit gebracht die ik
-          nodig had. Het traject is uiteindelijk niet passend gebleken
-          en heeft mijn situatie niet duurzaam verbeterd. Ik ben
-          achtergebleven met onzekerheid, financiële problemen en nog
-          altijd geen veilige plek om te wonen.
-        </p>
+          <p class="hero-description" data-i18n="heroDescription">
+            Een inwoner die herhaaldelijk om hulp vraagt, verdient meer dan
+            een doorverwijzing en een lijst met woningwebsites. Er moet
+            daadwerkelijk worden gekeken naar wat iemand nodig heeft en
+            welke ondersteuning passend en haalbaar is.
+          </p>
 
-        <p>
-          De gemeente Hoorn is op de hoogte van mijn situatie. Ik heb
-          hulp gezocht en geprobeerd mee te werken aan oplossingen.
-          Maar ik wil niet opnieuw van loket naar loket worden gestuurd,
-          opnieuw ergens geplaatst worden zonder dat er naar mijn
-          behoeften wordt gekeken, of opnieuw moeten bewijzen dat mijn
-          situatie ernstig genoeg is.
-        </p>
+          <div class="hero-actions">
+            <a href="#ondersteunen" class="button button-primary" data-i18n="heroCta">
+              Steun dit verzoek <span aria-hidden="true">→</span>
+            </a>
 
-        <p>
-          Ik wil dat er naar mij als mens wordt gekeken. Niet alleen
-          naar mijn dossier, mijn problemen of de plek waar ik op dat
-          moment verblijf.
-        </p>
+            <a href="#aanleiding" class="button button-secondary" data-i18n="heroSecondary">
+              Lees het verhaal
+            </a>
+          </div>
 
-        <h2>Wat ik vraag, is concreet:</h2>
+          <p class="hero-note" data-i18n="heroNote">
+            Deze petitie is bedoeld om het verzoek aan gemeente Hoorn
+            kracht bij te zetten. Het gaat om passende hulp, duidelijke
+            verantwoordelijkheid en een concreet vervolg.
+          </p>
 
-        <div class="requests">
-          <ul>
-            <li>
-              Een veilige en passende tijdelijke woonplek, zodat ik
-              niet langer dakloos hoef te zijn.
-            </li>
-            <li>
-              Een duurzaam perspectief op zelfstandig of begeleid wonen,
-              passend bij mijn mogelijkheden en behoeften.
-            </li>
-            <li>
-              Eén vast aanspreekpunt dat verantwoordelijkheid neemt
-              voor de coördinatie van mijn hulpverlening.
-            </li>
-            <li>
-              Een serieuze evaluatie van de eerdere hulpverlening en
-              waarom deze mij niet verder heeft geholpen.
-            </li>
-            <li>
-              Bescherming van mijn opleiding, werk en financiële
-              zelfstandigheid, zodat ik niet nog meer toekomstmogelijkheden
-              verlies door mijn woonsituatie.
-            </li>
-          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         PURPOSE
+    ================================================== -->
+
+    <section class="container">
+      <div class="purpose-strip">
+
+        <article class="purpose-item reveal">
+          <span class="purpose-number">01 / BEOORDELING</span>
+          <h3 data-i18n="purpose1Title">Kijk naar de hulpvraag</h3>
+          <p data-i18n="purpose1Text">
+            Onderzoek welke ondersteuning nodig is, in plaats van iemand
+            uitsluitend naar zelfstandig woningzoeken te verwijzen.
+          </p>
+        </article>
+
+        <article class="purpose-item reveal">
+          <span class="purpose-number">02 / VERANTWOORDELIJKHEID</span>
+          <h3 data-i18n="purpose2Title">Neem verantwoordelijkheid</h3>
+          <p data-i18n="purpose2Text">
+            Breng in kaart wat er in eerdere contacten en trajecten is
+            gebeurd en wat daarvan geleerd moet worden.
+          </p>
+        </article>
+
+        <article class="purpose-item reveal">
+          <span class="purpose-number">03 / VERVOLG</span>
+          <h3 data-i18n="purpose3Title">Zorg voor een oplossing</h3>
+          <p data-i18n="purpose3Text">
+            Maak concrete afspraken over passende begeleiding, wonen en
+            een haalbaar vervolg.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         ACCOUNTABILITY
+    ================================================== -->
+
+    <section class="section">
+      <div class="container">
+
+        <div class="accountability reveal">
+          <div class="accountability-content">
+
+            <span class="eyebrow" data-i18n="accountabilityEyebrow">
+              Waar het om draait
+            </span>
+
+            <h2 data-i18n="accountabilityTitle">
+              Een doorverwijzing is geen oplossing.
+            </h2>
+
+            <blockquote data-i18n="accountabilityQuote">
+              Wanneer iemand herhaaldelijk om ondersteuning vraagt,
+              mag de verantwoordelijkheid niet ophouden bij het
+              verstrekken van een lijst met woningwebsites.
+            </blockquote>
+
+            <p class="lead" data-i18n="accountabilityText">
+              Er moet worden onderzocht waarom zelfstandig wonen of
+              zelfstandig huisvesting vinden niet lukt, welke hulp
+              daarvoor nodig is en wie verantwoordelijk is voor het
+              organiseren van die hulp.
+            </p>
+
+          </div>
         </div>
 
-        <p>
-          Ik vraag de gemeente Hoorn om niet alleen naar een tijdelijke
-          oplossing te zoeken, maar samen met mij een plan te maken dat
-          daadwerkelijk werkt. Als de benodigde hulp niet binnen Hoorn
-          beschikbaar is, verwacht ik dat er actief wordt meegedacht
-          over een passende oplossing elders, zonder dat mijn hulpvraag
-          simpelweg wordt doorgeschoven.
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         BACKGROUND
+    ================================================== -->
+
+    <section class="section" id="aanleiding">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="backgroundEyebrow">
+            De aanleiding
+          </span>
+
+          <h2 data-i18n="backgroundTitle">
+            Een hulpvraag die niet nieuw is.
+          </h2>
+
+          <p class="lead" data-i18n="backgroundIntro">
+            Dit verzoek komt niet voort uit één incident of één
+            teleurstellend gesprek. Het is het resultaat van een
+            langdurige zoektocht naar ondersteuning die daadwerkelijk
+            aansluit op de situatie.
+          </p>
+        </div>
+
+        <div class="background-grid">
+
+          <article class="glass background-main reveal">
+
+            <h3 data-i18n="backgroundMainTitle">
+              De persoonlijke achtergrond
+            </h3>
+
+            <p data-i18n="backgroundP1">
+              Ik kom uit een achtergrond van huiselijk geweld en een
+              langdurig onveilige thuissituatie. In die periode is
+              geprobeerd om hulp te krijgen via onder andere Veilig Thuis,
+              de GGD en de politie. Ondanks die pogingen kwam er geen
+              oplossing die voldoende veiligheid en perspectief bood.
+            </p>
+
+            <p data-i18n="backgroundP2">
+              Vanuit die omstandigheden is al vroeg duidelijk geworden
+              dat zelfstandig een stabiele woonsituatie opbouwen niet
+              vanzelfsprekend is. Er was behoefte aan begeleiding,
+              structuur en een passend traject richting zelfstandigheid.
+            </p>
+
+            <p data-i18n="backgroundP3">
+              De vraag om ondersteuning is daarom niet simpelweg een
+              verzoek om een woning. Het gaat om de mogelijkheid om
+              duurzaam en veilig te wonen, met begeleiding die aansluit
+              op wat daadwerkelijk nodig is.
+            </p>
+
+          </article>
+
+          <aside class="glass background-aside reveal">
+
+            <div>
+              <span class="eyebrow" data-i18n="backgroundAsideEyebrow">
+                De kern
+              </span>
+
+              <h3 data-i18n="backgroundAsideTitle">
+                Zelfstandigheid vraagt soms om ondersteuning.
+              </h3>
+
+              <p data-i18n="backgroundAsideText">
+                Zelfstandig worden betekent niet dat iemand alle obstakels
+                zonder hulp moet overwinnen. Goede begeleiding kan juist
+                de basis vormen om uiteindelijk zelfstandig verder te kunnen.
+              </p>
+            </div>
+
+            <div class="aside-highlight">
+              <p data-i18n="backgroundHighlight">
+                Het doel is niet om afhankelijk te blijven van hulp,
+                maar om eindelijk de juiste ondersteuning te krijgen
+                om verder te kunnen.
+              </p>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         TIMELINE
+    ================================================== -->
+
+    <section class="section" id="tijdlijn">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="timelineEyebrow">
+            Wat eraan voorafging
+          </span>
+
+          <h2 data-i18n="timelineTitle">
+            Een traject dat steeds opnieuw vastliep.
+          </h2>
+
+          <p class="lead" data-i18n="timelineIntro">
+            Hieronder staat de hoofdlijn van de hulpvraag en de
+            ondersteuning die daarop volgde.
+          </p>
+        </div>
+
+        <div class="timeline">
+
+          <article class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass timeline-card">
+              <span class="timeline-date" data-i18n="timeline1Date">
+                2023 – Eerste hulpvragen
+              </span>
+
+              <h3 data-i18n="timeline1Title">
+                Contact met Regionale Toegang Hoorn
+              </h3>
+
+              <p data-i18n="timeline1P1">
+                Vanaf 2023 is meerdere keren contact gezocht met
+                Regionale Toegang Hoorn. Tijdens verschillende
+                contactmomenten en spreekuren is de behoefte aan
+                woonbegeleiding besproken.
+              </p>
+
+              <p data-i18n="timeline1P2">
+                Daarbij is ook expliciet gevraagd naar Kamers met Kansen.
+                In plaats van een passend traject of een verdere
+                beoordeling werd herhaaldelijk verwezen naar zelfstandig
+                zoeken naar woonruimte en werden lijsten met woonnetten
+                meegegeven.
+              </p>
+
+              <p data-i18n="timeline1P3">
+                Daarmee bleef de kern van de hulpvraag onbeantwoord:
+                waarom was zelfstandig huisvesting vinden niet haalbaar
+                en welke begeleiding was daarvoor nodig?
+              </p>
+            </div>
+          </article>
+
+
+          <article class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass timeline-card">
+              <span class="timeline-date" data-i18n="timeline2Date">
+                2023 – 2024 · Herhaalde contactmomenten
+              </span>
+
+              <h3 data-i18n="timeline2Title">
+                Een terugkerende hulpvraag zonder passend vervolg
+              </h3>
+
+              <p data-i18n="timeline2P1">
+                Ook in 2023 en 2024 zijn meerdere contactmomenten geweest.
+                De behoefte aan ondersteuning bleef bestaan, maar er kwam
+                geen passend en uitvoerbaar woonbegeleidingstraject tot stand.
+              </p>
+
+              <p data-i18n="timeline2P2">
+                Het gevoel dat hierdoor ontstond, was dat de deur feitelijk
+                gesloten bleef. Er werd wel verwezen, maar de onderliggende
+                situatie werd niet zichtbaar verder onderzocht.
+              </p>
+            </div>
+          </article>
+
+
+          <article class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass timeline-card">
+              <span class="timeline-date" data-i18n="timeline3Date">
+                Daarna · Leger des Heils Hoorn
+              </span>
+
+              <h3 data-i18n="timeline3Title">
+                Een traject van ongeveer zeven maanden
+              </h3>
+
+              <p data-i18n="timeline3P1">
+                Vervolgens is er ongeveer zeven maanden een traject
+                geweest bij het Leger des Heils in Hoorn.
+              </p>
+
+              <p data-i18n="timeline3P2">
+                Volgens mijn ervaring heeft dit traject niet geleid tot
+                een duurzame woonoplossing. De geboden ondersteuning sloot
+                onvoldoende aan op wat nodig was en de situatie bleef
+                instabiel.
+              </p>
+
+              <p data-i18n="timeline3P3">
+                Tijdens en rond deze periode zijn bovendien financiële
+                achterstanden ontstaan. Ook de gevolgen daarvan verdienen
+                aandacht en een zorgvuldige beoordeling.
+              </p>
+            </div>
+          </article>
+
+
+          <article class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+
+            <div class="glass timeline-card">
+              <span class="timeline-date" data-i18n="timeline4Date">
+                Vandaag · De hulpvraag bestaat nog steeds
+              </span>
+
+              <h3 data-i18n="timeline4Title">
+                Er is nog altijd een passend vervolg nodig
+              </h3>
+
+              <p data-i18n="timeline4P1">
+                Ondanks de eerdere contacten en het gevolgde traject is
+                er nog geen duurzame oplossing bereikt. De behoefte aan
+                passende woonbegeleiding en stabiliteit is niet verdwenen.
+              </p>
+
+              <p data-i18n="timeline4P2">
+                Het doel is een realistisch traject waarmee wonen,
+                begeleiding, werk en onderwijs weer op een stabiele
+                manier kunnen samengaan, met behoud van zoveel mogelijk
+                zelfstandigheid.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         REQUESTS TO MUNICIPALITY
+    ================================================== -->
+
+    <section class="section" id="verzoeken">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="requestsEyebrow">
+            Wat we vragen
+          </span>
+
+          <h2 data-i18n="requestsTitle">
+            Geen vrijblijvende doorverwijzing, maar een concreet vervolg.
+          </h2>
+
+          <p class="lead" data-i18n="requestsIntro">
+            We vragen gemeente Hoorn om de situatie serieus te beoordelen
+            en verantwoordelijkheid te nemen voor een zorgvuldig vervolg.
+          </p>
+        </div>
+
+        <div class="requests-grid">
+
+          <article class="glass glass-card request-card reveal">
+            <div class="request-icon">01</div>
+
+            <h3 data-i18n="request1Title">
+              Een zorgvuldige beoordeling
+            </h3>
+
+            <p data-i18n="request1Text">
+              Beoordeel de volledige ondersteuningsbehoefte en onderzoek
+              welke mogelijkheden passend zijn, waaronder Kamers met
+              Kansen, beschermd wonen of andere vormen van woonbegeleiding.
+              Kijk daarbij ook naar de praktische haalbaarheid.
+            </p>
+          </article>
+
+
+          <article class="glass glass-card request-card reveal">
+            <div class="request-icon">02</div>
+
+            <h3 data-i18n="request2Title">
+              Inzicht in eerdere ondersteuning
+            </h3>
+
+            <p data-i18n="request2Text">
+              Kijk terug op de eerdere contacten met Regionale Toegang
+              Hoorn en het traject bij het Leger des Heils. Onderzoek
+              waarom de hulpvraag niet tot een duurzaam en passend
+              resultaat heeft geleid.
+            </p>
+          </article>
+
+
+          <article class="glass glass-card request-card reveal">
+            <div class="request-icon">03</div>
+
+            <h3 data-i18n="request3Title">
+              Aandacht voor financiële gevolgen
+            </h3>
+
+            <p data-i18n="request3Text">
+              Betrek de ontstane financiële achterstanden bij de
+              beoordeling. Onderzoek welke gevolgen de eerdere
+              ondersteuning heeft gehad en welke mogelijkheden er
+              zijn om de ontstane situatie aan te pakken.
+            </p>
+          </article>
+
+
+          <article class="glass glass-card request-card reveal">
+            <div class="request-icon">04</div>
+
+            <h3 data-i18n="request4Title">
+              Een concreet en uitvoerbaar vervolg
+            </h3>
+
+            <p data-i18n="request4Text">
+              Wijs een duidelijk aanspreekpunt aan, maak inzichtelijk
+              welke stappen worden gezet en zorg dat eventuele
+              doorverwijzingen daadwerkelijk leiden naar beschikbare
+              en passende ondersteuning.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         SYSTEMIC QUESTIONS
+    ================================================== -->
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="questionsEyebrow">
+            Meer dan één dossier
+          </span>
+
+          <h2 data-i18n="questionsTitle">
+            Dit roept ook bredere vragen op.
+          </h2>
+
+          <p class="lead" data-i18n="questionsIntro">
+            Deze situatie staat niet los van de manier waarop
+            ondersteuning georganiseerd wordt. Wanneer verschillende
+            instanties betrokken zijn, mag de hulpvraag niet tussen
+            organisaties verdwijnen.
+          </p>
+        </div>
+
+        <div class="question-list">
+
+          <div class="question reveal">
+            <span class="question-mark">?</span>
+            <p data-i18n="question1">
+              Wat gebeurt er wanneer iemand herhaaldelijk aangeeft
+              zelfstandig geen woonruimte te kunnen vinden?
+            </p>
+          </div>
+
+          <div class="question reveal">
+            <span class="question-mark">?</span>
+            <p data-i18n="question2">
+              Wie controleert of een doorverwijzing daadwerkelijk
+              aansluit op de behoefte en leidt tot beschikbare hulp?
+            </p>
+          </div>
+
+          <div class="question reveal">
+            <span class="question-mark">?</span>
+            <p data-i18n="question3">
+              Hoe wordt voorkomen dat mensen tussen verschillende
+              organisaties en loketten terechtkomen zonder duidelijk
+              aanspreekpunt?
+            </p>
+          </div>
+
+          <div class="question reveal">
+            <span class="question-mark">?</span>
+            <p data-i18n="question4">
+              Hoe worden de gevolgen van langdurige instabiliteit
+              voor financiën, werk, onderwijs en welzijn meegenomen?
+            </p>
+          </div>
+
+          <div class="question reveal">
+            <span class="question-mark">?</span>
+            <p data-i18n="question5">
+              Hoe zorgt de gemeente ervoor dat een inwoner niet
+              telkens opnieuw dezelfde hulpvraag moet uitleggen
+              zonder dat er daadwerkelijk iets verandert?
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         PETITION STATUS
+    ================================================== -->
+
+    <section class="section" id="status">
+      <div class="container">
+
+        <div class="glass status-panel reveal">
+
+          <div>
+            <span class="status-label">
+              <span class="status-dot"></span>
+              <span data-i18n="statusLabel">In voorbereiding</span>
+            </span>
+
+            <h2 style="margin-top: 20px;" data-i18n="statusTitle">
+              Wat is het doel van deze petitie?
+            </h2>
+
+            <p data-i18n="statusP1">
+              Deze petitie wordt op dit moment voornamelijk gebruikt
+              als argumentatiepunt om het verzoek aan gemeente Hoorn
+              kracht bij te zetten. Het doel is om zichtbaar te maken
+              dat deze hulpvraag serieus genomen moet worden en dat
+              passende ondersteuning noodzakelijk is.
+            </p>
+
+            <p data-i18n="statusP2">
+              Ik heb deze petitie samen met een zorgverlener van
+              Stichting Netwerk voorbereid. We willen hiermee steun
+              verzamelen voor een zorgvuldige beoordeling en een
+              concreet vervolg.
+            </p>
+
+            <p data-i18n="statusP3">
+              Dit is geen officiële landelijke procedure of formele
+              escalatie naar een hogere instantie. De petitie is
+              bedoeld als aanvullende maatschappelijke ondersteuning
+              bij het gesprek met de gemeente.
+            </p>
+          </div>
+
+          <div class="status-side">
+            <strong data-i18n="statusSideTitle">Nog niet geopend</strong>
+            <span data-i18n="statusSideText">
+              Ondertekening wordt beschikbaar zodra het systeem
+              hiervoor is ingericht.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================
+         SUPPORT CTA
+    ================================================== -->
+
+    <section class="section" id="ondersteunen">
+      <div class="container">
+
+        <div class="closing reveal">
+          <div class="closing-content">
+
+            <span class="eyebrow" data-i18n="closingEyebrow">
+              Samen staan we sterker
+            </span>
+
+            <h2 data-i18n="closingTitle">
+              Ondersteun een oproep tot passende hulp en verantwoordelijkheid.
+            </h2>
+
+            <p class="lead" data-i18n="closingText">
+              Een gemeente moet kunnen uitleggen hoe een hulpvraag
+              wordt beoordeeld, welke ondersteuning mogelijk is en
+              wie verantwoordelijk is voor het vervolg. Help dit
+              verzoek zichtbaar te maken.
+            </p>
+
+            <button
+              class="button button-primary button-disabled"
+              type="button"
+              disabled
+              aria-disabled="true"
+              data-i18n="closingButton"
+            >
+              Ondertekening binnenkort beschikbaar
+            </button>
+
+            <p class="muted" style="font-size: 0.83rem; margin-top: 16px;" data-i18n="closingNote">
+              Er worden op dit moment nog geen handtekeningen
+              verzameld via deze website.
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===================================================
+       FOOTER
+  ==================================================== -->
+
+  <footer>
+    <div class="container footer-inner">
+
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand-mark">P</span>
+          <span data-i18n="footerBrand">Passende ondersteuning</span>
+        </a>
+
+        <p style="margin-top: 14px;" data-i18n="footerText">
+          Een gezamenlijk verzoek aan gemeente Hoorn voor
+          zorgvuldige beoordeling, passende woonbegeleiding
+          en verantwoordelijkheid voor tekortgeschoten ondersteuning.
         </p>
+      </div>
 
-        <p>
-          Ik weet dat ik niet de enige ben die met dakloosheid en
-          vastgelopen hulpverlening te maken heeft. Maar ik schrijf
-          deze petitie niet om een algemeen verhaal over dakloosheid
-          te vertellen. Ik schrijf haar omdat dit mijn leven is, omdat
-          ik er middenin zit en omdat ik niet nog meer jaren wil verliezen
-          aan omstandigheden die ik niet zelf heb veroorzaakt.
-        </p>
+      <div class="footer-mark">
+        <span data-i18n="footerBottom">
+          Een verzoek om passende ondersteuning.
+        </span>
+        <br>
+        <span>© <span id="currentYear"></span></span>
+      </div>
 
-        <p>
-          Ik heb niet gevraagd om de omstandigheden waarin ik ben
-          opgegroeid. Ik heb niet gevraagd om het geweld, de mishandeling
-          of de problemen met de instanties waarmee ik te maken heb gehad.
-        </p>
+    </div>
+  </footer>
 
-        <p>
-          Ik wil niet dat mijn hele jeugd en volwassen leven worden
-          bepaald door wat mij is overkomen. Ik wil studeren, werken,
-          thuiskomen, vrienden uitnodigen en plannen maken. Ik wil de
-          vrijheid hebben om me bezig te houden met wie ik wil worden,
-          in plaats van iedere dag bezig te zijn met overleven.
-        </p>
 
-        <p class="closing">
-          <strong>Daarom vraag ik om steun.</strong>
-          Help mij om de gemeente Hoorn duidelijk te maken dat mijn
-          situatie niet langer kan blijven voortbestaan zonder een
-          passende oplossing. Ik vraag niet om medelijden of
-          uitzonderingsbehandeling. Ik vraag om veiligheid,
-          verantwoordelijkheid en de kans om eindelijk mijn eigen
-          leven te beginnen.
-        </p>
+  <!-- ===================================================
+       JAVASCRIPT
+       Theme, language, animations
+  ==================================================== -->
 
-      </article>
+  <script>
+    /* =====================================================
+       1. LANGUAGE DATA
+       Dutch is ALWAYS the initial default.
+    ===================================================== */
 
-      <section class="call-to-action">
-        <h2>Steun mijn petitie</h2>
-        <p>
-          De petitie is nog niet gepubliceerd. Zodra deze beschikbaar is,
-          laat ik persoonlijk weten waar je kunt ondertekenen.
-        </p>
-      </section>
-    </main>
+    const translations = {
+      nl: {
+        brand: "Passende ondersteuning",
+        navBackground: "Aanleiding",
+        navTimeline: "Tijdlijn",
+        navRequests: "Verzoeken",
+        navStatus: "Over deze petitie",
+        darkMode: "Darkmode",
+        lightMode: "Lichtmodus",
 
-    <footer>
-      Een persoonlijk verzoek aan de gemeente Hoorn.
-    </footer>
+        heroLabel: "Een gezamenlijk verzoek aan gemeente Hoorn",
+        heroTitle: 'Passende ondersteuning is een <span>verantwoordelijkheid.</span>',
+        heroDescription: "Een inwoner die herhaaldelijk om hulp vraagt, verdient meer dan een doorverwijzing en een lijst met woningwebsites. Er moet daadwerkelijk worden gekeken naar wat iemand nodig heeft en welke ondersteuning passend en haalbaar is.",
+        heroCta: "Steun dit verzoek →",
+        heroSecondary: "Lees het verhaal",
+        heroNote: "Deze petitie is bedoeld om het verzoek aan gemeente Hoorn kracht bij te zetten. Het gaat om passende hulp, duidelijke verantwoordelijkheid en een concreet vervolg.",
 
-  </div>
+        purpose1Title: "Kijk naar de hulpvraag",
+        purpose1Text: "Onderzoek welke ondersteuning nodig is, in plaats van iemand uitsluitend naar zelfstandig woningzoeken te verwijzen.",
+        purpose2Title: "Neem verantwoordelijkheid",
+        purpose2Text: "Breng in kaart wat er in eerdere contacten en trajecten is gebeurd en wat daarvan geleerd moet worden.",
+        purpose3Title: "Zorg voor een oplossing",
+        purpose3Text: "Maak concrete afspraken over passende begeleiding, wonen en een haalbaar vervolg.",
+
+        accountabilityEyebrow: "Waar het om draait",
+        accountabilityTitle: "Een doorverwijzing is geen oplossing.",
+        accountabilityQuote: "Wanneer iemand herhaaldelijk om ondersteuning vraagt, mag de verantwoordelijkheid niet ophouden bij het verstrekken van een lijst met woningwebsites.",
+        accountabilityText: "Er moet worden onderzocht waarom zelfstandig wonen of zelfstandig huisvesting vinden niet lukt, welke hulp daarvoor nodig is en wie verantwoordelijk is voor het organiseren van die hulp.",
+
+        backgroundEyebrow: "De aanleiding",
+        backgroundTitle: "Een hulpvraag die niet nieuw is.",
+        backgroundIntro: "Dit verzoek komt niet voort uit één incident of één teleurstellend gesprek. Het is het resultaat van een langdurige zoektocht naar ondersteuning die daadwerkelijk aansluit op de situatie.",
+        backgroundMainTitle: "De persoonlijke achtergrond",
+        backgroundP1: "Ik kom uit een achtergrond van huiselijk geweld en een langdurig onveilige thuissituatie. In die periode is geprobeerd om hulp te krijgen via onder andere Veilig Thuis, de GGD en de politie. Ondanks die pogingen kwam er geen oplossing die voldoende veiligheid en perspectief bood.",
+        backgroundP2: "Vanuit die omstandigheden is al vroeg duidelijk geworden dat zelfstandig een stabiele woonsituatie opbouwen niet vanzelfsprekend is. Er was behoefte aan begeleiding, structuur en een passend traject richting zelfstandigheid.",
+        backgroundP3: "De vraag om ondersteuning is daarom niet simpelweg een verzoek om een woning. Het gaat om de mogelijkheid om duurzaam en veilig te wonen, met begeleiding die aansluit op wat daadwerkelijk nodig is.",
+        backgroundAsideEyebrow: "De kern",
+        backgroundAsideTitle: "Zelfstandigheid vraagt soms om ondersteuning.",
+        backgroundAsideText: "Zelfstandig worden betekent niet dat iemand alle obstakels zonder hulp moet overwinnen. Goede begeleiding kan juist de basis vormen om uiteindelijk zelfstandig verder te kunnen.",
+        backgroundHighlight: "Het doel is niet om afhankelijk te blijven van hulp, maar om eindelijk de juiste ondersteuning te krijgen om verder te kunnen.",
+
+        timelineEyebrow: "Wat eraan voorafging",
+        timelineTitle: "Een traject dat steeds opnieuw vastliep.",
+        timelineIntro: "Hieronder staat de hoofdlijn van de hulpvraag en de ondersteuning die daarop volgde.",
+        timeline1Date: "2023 – Eerste hulpvragen",
+        timeline1Title: "Contact met Regionale Toegang Hoorn",
+        timeline1P1: "Vanaf 2023 is meerdere keren contact gezocht met Regionale Toegang Hoorn. Tijdens verschillende contactmomenten en spreekuren is de behoefte aan woonbegeleiding besproken.",
+        timeline1P2: "Daarbij is ook expliciet gevraagd naar Kamers met Kansen. In plaats van een passend traject of een verdere beoordeling werd herhaaldelijk verwezen naar zelfstandig zoeken naar woonruimte en werden lijsten met woonnetten meegegeven.",
+        timeline1P3: "Daarmee bleef de kern van de hulpvraag onbeantwoord: waarom was zelfstandig huisvesting vinden niet haalbaar en welke begeleiding was daarvoor nodig?",
+        timeline2Date: "2023 – 2024 · Herhaalde contactmomenten",
+        timeline2Title: "Een terugkerende hulpvraag zonder passend vervolg",
+        timeline2P1: "Ook in 2023 en 2024 zijn meerdere contactmomenten geweest. De behoefte aan ondersteuning bleef bestaan, maar er kwam geen passend en uitvoerbaar woonbegeleidingstraject tot stand.",
+        timeline2P2: "Het gevoel dat hierdoor ontstond, was dat de deur feitelijk gesloten bleef. Er werd wel verwezen, maar de onderliggende situatie werd niet zichtbaar verder onderzocht.",
+        timeline3Date: "Daarna · Leger des Heils Hoorn",
+        timeline3Title: "Een traject van ongeveer zeven maanden",
+        timeline3P1: "Vervolgens is er ongeveer zeven maanden een traject geweest bij het Leger des Heils in Hoorn.",
+        timeline3P2: "Volgens mijn ervaring heeft dit traject niet geleid tot een duurzame woonoplossing. De geboden ondersteuning sloot onvoldoende aan op wat nodig was en de situatie bleef instabiel.",
+        timeline3P3: "Tijdens en rond deze periode zijn bovendien financiële achterstanden ontstaan. Ook de gevolgen daarvan verdienen aandacht en een zorgvuldige beoordeling.",
+        timeline4Date: "Vandaag · De hulpvraag bestaat nog steeds",
+        timeline4Title: "Er is nog altijd een passend vervolg nodig",
+        timeline4P1: "Ondanks de eerdere contacten en het gevolgde traject is er nog geen duurzame oplossing bereikt. De behoefte aan passende woonbegeleiding en stabiliteit is niet verdwenen.",
+        timeline4P2: "Het doel is een realistisch traject waarmee wonen, begeleiding, werk en onderwijs weer op een stabiele manier kunnen samengaan, met behoud van zoveel mogelijk zelfstandigheid.",
+
+        requestsEyebrow: "Wat we vragen",
+        requestsTitle: "Geen vrijblijvende doorverwijzing, maar een concreet vervolg.",
+        requestsIntro: "We vragen gemeente Hoorn om de situatie serieus te beoordelen en verantwoordelijkheid te nemen voor een zorgvuldig vervolg.",
+        request1Title: "Een zorgvuldige beoordeling",
+        request1Text: "Beoordeel de volledige ondersteuningsbehoefte en onderzoek welke mogelijkheden passend zijn, waaronder Kamers met Kansen, beschermd wonen of andere vormen van woonbegeleiding. Kijk daarbij ook naar de praktische haalbaarheid.",
+        request2Title: "Inzicht in eerdere ondersteuning",
+        request2Text: "Kijk terug op de eerdere contacten met Regionale Toegang Hoorn en het traject bij het Leger des Heils. Onderzoek waarom de hulpvraag niet tot een duurzaam en passend resultaat heeft geleid.",
+        request3Title: "Aandacht voor financiële gevolgen",
+        request3Text: "Betrek de ontstane financiële achterstanden bij de beoordeling. Onderzoek welke gevolgen de eerdere ondersteuning heeft gehad en welke mogelijkheden er zijn om de ontstane situatie aan te pakken.",
+        request4Title: "Een concreet en uitvoerbaar vervolg",
+        request4Text: "Wijs een duidelijk aanspreekpunt aan, maak inzichtelijk welke stappen worden gezet en zorg dat eventuele doorverwijzingen daadwerkelijk leiden naar beschikbare en passende ondersteuning.",
+
+        questionsEyebrow: "Meer dan één dossier",
+        questionsTitle: "Dit roept ook bredere vragen op.",
+        questionsIntro: "Deze situatie staat niet los van de manier waarop ondersteuning georganiseerd wordt. Wanneer verschillende instanties betrokken zijn, mag de hulpvraag niet tussen organisaties verdwijnen.",
+        question1: "Wat gebeurt er wanneer iemand herhaaldelijk aangeeft zelfstandig geen woonruimte te kunnen vinden?",
+        question2: "Wie controleert of een doorverwijzing daadwerkelijk aansluit op de behoefte en leidt tot beschikbare hulp?",
+        question3: "Hoe wordt voorkomen dat mensen tussen verschillende organisaties en loketten terechtkomen zonder duidelijk aanspreekpunt?",
+        question4: "Hoe worden de gevolgen van langdurige instabiliteit voor financiën, werk, onderwijs en welzijn meegenomen?",
+        question5: "Hoe zorgt de gemeente ervoor dat een inwoner niet telkens opnieuw dezelfde hulpvraag moet uitleggen zonder dat er daadwerkelijk iets verandert?",
+
+        statusLabel: "In voorbereiding",
+        statusTitle: "Wat is het doel van deze petitie?",
+        statusP1: "Deze petitie wordt op dit moment voornamelijk gebruikt als argumentatiepunt om het verzoek aan gemeente Hoorn kracht bij te zetten. Het doel is om zichtbaar te maken dat deze hulpvraag serieus genomen moet worden en dat passende ondersteuning noodzakelijk is.",
+        statusP2: "Ik heb deze petitie samen met een zorgverlener van Stichting Netwerk voorbereid. We willen hiermee steun verzamelen voor een zorgvuldige beoordeling en een concreet vervolg.",
+        statusP3: "Dit is geen officiële landelijke procedure of formele escalatie naar een hogere instantie. De petitie is bedoeld als aanvullende maatschappelijke ondersteuning bij het gesprek met de gemeente.",
+        statusSideTitle: "Nog niet geopend",
+        statusSideText: "Ondertekening wordt beschikbaar zodra het systeem hiervoor is ingericht.",
+
+        closingEyebrow: "Samen staan we sterker",
+        closingTitle: "Ondersteun een oproep tot passende hulp en verantwoordelijkheid.",
+        closingText: "Een gemeente moet kunnen uitleggen hoe een hulpvraag wordt beoordeeld, welke ondersteuning mogelijk is en wie verantwoordelijk is voor het vervolg. Help dit verzoek zichtbaar te maken.",
+        closingButton: "Ondertekening binnenkort beschikbaar",
+        closingNote: "Er worden op dit moment nog geen handtekeningen verzameld via deze website.",
+
+        footerBrand: "Passende ondersteuning",
+        footerText: "Een gezamenlijk verzoek aan gemeente Hoorn voor zorgvuldige beoordeling, passende woonbegeleiding en verantwoordelijkheid voor tekortgeschoten ondersteuning.",
+        footerBottom: "Een verzoek om passende ondersteuning."
+      },
+
+      en: {
+        brand: "Appropriate support",
+        navBackground: "Background",
+        navTimeline: "Timeline",
+        navRequests: "Requests",
+        navStatus: "About this petition",
+        darkMode: "Dark mode",
+        lightMode: "Light mode",
+
+        heroLabel: "A joint request to the Municipality of Hoorn",
+        heroTitle: 'Appropriate support is a <span>responsibility.</span>',
+        heroDescription: "Someone who repeatedly asks for help deserves more than a referral and a list of housing websites. Their actual needs must be assessed, and appropriate, realistic support must be considered.",
+        heroCta: "Support this request →",
+        heroSecondary: "Read the story",
+        heroNote: "This petition is intended to strengthen the request to the Municipality of Hoorn. It is about appropriate support, clear responsibility and a concrete way forward.",
+
+        purpose1Title: "Assess the actual need",
+        purpose1Text: "Investigate what support is needed instead of simply referring someone to search for housing independently.",
+        purpose2Title: "Take responsibility",
+        purpose2Text: "Establish what happened during previous contacts and support programmes, and what can be learned from them.",
+        purpose3Title: "Provide a way forward",
+        purpose3Text: "Make concrete arrangements for appropriate guidance, housing and a realistic next step.",
+
+        accountabilityEyebrow: "The central issue",
+        accountabilityTitle: "A referral is not a solution.",
+        accountabilityQuote: "When someone repeatedly asks for support, responsibility cannot end with handing them a list of housing websites.",
+        accountabilityText: "There must be an assessment of why finding housing or living independently is not feasible, what assistance is needed and who is responsible for arranging it.",
+
+        backgroundEyebrow: "The background",
+        backgroundTitle: "A support request that is not new.",
+        backgroundIntro: "This request does not stem from a single incident or disappointing conversation. It is the result of a long search for support that genuinely addresses the situation.",
+        backgroundMainTitle: "Personal background",
+        backgroundP1: "I come from a background of domestic violence and a prolonged unsafe home situation. During that period, attempts were made to obtain help from organisations including Veilig Thuis, the GGD and the police. Despite those efforts, no solution was provided that offered sufficient safety and a realistic way forward.",
+        backgroundP2: "These circumstances made it clear that building a stable living situation independently was not straightforward. Guidance, structure and an appropriate path towards independence were needed.",
+        backgroundP3: "The request for support is therefore not simply a request for housing. It is about the ability to live safely and sustainably, with guidance that addresses the actual needs involved.",
+        backgroundAsideEyebrow: "The principle",
+        backgroundAsideTitle: "Independence sometimes requires support.",
+        backgroundAsideText: "Becoming independent does not mean someone must overcome every obstacle without help. Appropriate guidance can provide the foundation for becoming independent in the long term.",
+        backgroundHighlight: "The goal is not to remain dependent on support, but to finally receive the right help to move forward.",
+
+        timelineEyebrow: "What happened before",
+        timelineTitle: "A process that repeatedly reached a dead end.",
+        timelineIntro: "The following outlines the main stages of the support request and the assistance that followed.",
+        timeline1Date: "2023 – Initial requests for help",
+        timeline1Title: "Contact with Regional Access Hoorn",
+        timeline1P1: "From 2023 onwards, contact was made with Regional Access Hoorn on several occasions. The need for housing guidance was discussed during various appointments and consultation sessions.",
+        timeline1P2: "A specific request was also made for Kamers met Kansen. Instead of an appropriate programme or further assessment, the repeated response was to search for housing independently, accompanied by lists of housing websites.",
+        timeline1P3: "The central question therefore remained unanswered: why was finding housing independently not feasible, and what guidance was needed?",
+        timeline2Date: "2023 – 2024 · Repeated contact",
+        timeline2Title: "A recurring request without an appropriate follow-up",
+        timeline2P1: "Several further contacts took place during 2023 and 2024. The need for support remained, but no suitable and workable housing guidance programme was established.",
+        timeline2P2: "The resulting experience was that the door effectively remained closed. Referrals were made, but the underlying situation was not visibly investigated further.",
+        timeline3Date: "Afterwards · Salvation Army Hoorn",
+        timeline3Title: "A programme lasting approximately seven months",
+        timeline3P1: "A support programme with the Salvation Army in Hoorn subsequently lasted approximately seven months.",
+        timeline3P2: "In my experience, this programme did not result in a sustainable housing solution. The support provided was not sufficiently aligned with what was needed, and the situation remained unstable.",
+        timeline3P3: "Financial arrears also arose during and around this period. The consequences deserve attention and a careful assessment.",
+        timeline4Date: "Today · The need for support remains",
+        timeline4Title: "An appropriate next step is still needed",
+        timeline4P1: "Despite the previous contacts and support programme, no sustainable solution has been achieved. The need for appropriate housing guidance and stability remains.",
+        timeline4P2: "The goal is a realistic programme that allows housing, guidance, work and education to coexist in a stable way, while preserving as much independence as possible.",
+
+        requestsEyebrow: "What we are asking for",
+        requestsTitle: "Not another referral without follow-up, but a concrete way forward.",
+        requestsIntro: "We ask the Municipality of Hoorn to assess the situation seriously and take responsibility for an appropriate next step.",
+        request1Title: "A thorough assessment",
+        request1Text: "Assess the full support needs and investigate suitable options, including Kamers met Kansen, supported housing or other forms of housing guidance. Consider whether these options are practically accessible.",
+        request2Title: "Review previous support",
+        request2Text: "Review the previous contacts with Regional Access Hoorn and the programme with the Salvation Army. Investigate why the request for support did not lead to a sustainable and appropriate outcome.",
+        request3Title: "Consider the financial consequences",
+        request3Text: "Include the financial arrears in the assessment. Investigate the consequences of previous support and what options exist to address the resulting situation.",
+        request4Title: "A concrete and workable next step",
+        request4Text: "Assign a clear point of contact, explain the steps that will be taken and ensure that any referrals actually lead to available and appropriate support.",
+
+        questionsEyebrow: "More than one individual case",
+        questionsTitle: "This also raises broader questions.",
+        questionsIntro: "This situation is connected to how support services are organised. When several organisations are involved, a support request must not disappear between them.",
+        question1: "What happens when someone repeatedly explains that they cannot find housing independently?",
+        question2: "Who checks whether a referral actually addresses the need and leads to available support?",
+        question3: "How can people be prevented from falling between organisations and service desks without a clear point of contact?",
+        question4: "How are the effects of prolonged instability on finances, work, education and wellbeing taken into account?",
+        question5: "How does the municipality ensure that residents do not have to explain the same request for help repeatedly without anything actually changing?",
+
+        statusLabel: "In preparation",
+        statusTitle: "What is the purpose of this petition?",
+        statusP1: "At this stage, this petition is primarily being used as supporting argumentation to strengthen the request to the Municipality of Hoorn. Its purpose is to make clear that this request for help deserves serious consideration and that appropriate support is necessary.",
+        statusP2: "I prepared this petition together with a care provider from Stichting Netwerk. We want to gather support for a thorough assessment and a concrete way forward.",
+        statusP3: "This is not an official national procedure or a formal escalation to a higher authority. The petition is intended as additional public support for discussions with the municipality.",
+        statusSideTitle: "Not yet open",
+        statusSideText: "Signing will become available once the required system has been set up.",
+
+        closingEyebrow: "Stronger together",
+        closingTitle: "Support a call for appropriate help and accountability.",
+        closingText: "A municipality should be able to explain how a support request is assessed, what assistance is possible and who is responsible for the next steps. Help make this request visible.",
+        closingButton: "Signing will be available soon",
+        closingNote: "No signatures are currently being collected through this website.",
+
+        footerBrand: "Appropriate support",
+        footerText: "A joint request to the Municipality of Hoorn for a thorough assessment, appropriate housing guidance and accountability for inadequate support.",
+        footerBottom: "A request for appropriate support."
+      }
+    };
+
+
+    /* =====================================================
+       2. LANGUAGE SWITCHING
+       Dutch is the initial default for new visitors.
+    ===================================================== */
+
+    const languageToggle = document.getElementById("languageToggle");
+    let currentLanguage = localStorage.getItem("petition-language") || "nl";
+
+    if (!translations[currentLanguage]) {
+      currentLanguage = "nl";
+    }
+
+    function setLanguage(language) {
+      if (!translations[language]) return;
+
+      currentLanguage = language;
+      document.documentElement.lang = language;
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        const translated = translations[language][key];
+
+        if (translated !== undefined) {
+          element.innerHTML = translated;
+        }
+      });
+
+      languageToggle.textContent = language === "nl" ? "EN" : "NL";
+
+      languageToggle.setAttribute(
+        "aria-label",
+        language === "nl" ? "Switch to English" : "Schakel naar Nederlands"
+      );
+
+      localStorage.setItem("petition-language", language);
+    }
+
+    languageToggle.addEventListener("click", () => {
+      setLanguage(currentLanguage === "nl" ? "en" : "nl");
+    });
+
+
+    /* =====================================================
+       3. THEME SWITCHING
+       Light mode is the initial default.
+    ===================================================== */
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeLabel = document.getElementById("themeLabel");
+
+    let currentTheme = localStorage.getItem("petition-theme") || "light";
+
+    function setTheme(theme) {
+      currentTheme = theme;
+
+      document.documentElement.dataset.theme = theme;
+
+      const isDark = theme === "dark";
+
+      themeIcon.textContent = isDark ? "☀" : "☾";
+
+      themeLabel.textContent = isDark
+        ? translations[currentLanguage].lightMode
+        : translations[currentLanguage].darkMode;
+
+      themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Switch to light mode" : "Switch to dark mode"
+      );
+
+      localStorage.setItem("petition-theme", theme);
+    }
+
+    themeToggle.addEventListener("click", () => {
+      setTheme(currentTheme === "light" ? "dark" : "light");
+    });
+
+
+    /* =====================================================
+       4. INITIALISE PAGE
+    ===================================================== */
+
+    setLanguage(currentLanguage);
+    setTheme(currentTheme);
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+
+    /* =====================================================
+       5. SCROLL REVEAL ANIMATIONS
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -35px 0px"
+        }
+      );
+
+      revealElements.forEach(element => {
+        observer.observe(element);
+      });
+    } else {
+      revealElements.forEach(element => {
+        element.classList.add("visible");
+      });
+    }
+  </script>
+
 </body>
 </html>
